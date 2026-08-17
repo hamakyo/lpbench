@@ -1,5 +1,7 @@
 # LPBench
 
+English | [日本語](./README.ja.md)
+
 Continuous benchmark for LLM-generated landing pages and web interfaces.
 
 ## Goals
