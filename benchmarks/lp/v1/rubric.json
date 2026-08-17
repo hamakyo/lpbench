@@ -1,0 +1,12 @@
+{
+  "total": 100,
+  "categories": {
+    "visual": 25,
+    "responsive": 15,
+    "functionality": 15,
+    "accessibility": 10,
+    "compliance": 15,
+    "codeQuality": 10,
+    "technical": 10
+  }
+}
