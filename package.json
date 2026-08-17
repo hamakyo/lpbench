@@ -1,0 +1,13 @@
+{
+  "name": "lpbench",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Continuous benchmark for LLM-generated landing pages and web interfaces",
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0"
+  }
+}

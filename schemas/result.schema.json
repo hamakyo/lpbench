@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lpbench.dev/schemas/result.schema.json",
+  "title": "LPBench Result",
+  "type": "object",
+  "required": ["runId", "benchmark", "model", "generation", "scores"],
+  "properties": {
+    "runId": { "type": "string" },
+    "benchmark": {
+      "type": "object",
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "type": "string" },
+        "version": { "type": "string" }
+      }
+    },
+    "model": {
+      "type": "object",
+      "required": ["provider", "id", "surface"],
+      "properties": {
+        "provider": { "type": "string" },
+        "id": { "type": "string" },
+        "surface": { "enum": ["api", "cli", "web", "manual"] }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "required": ["durationMs"],
+      "properties": {
+        "durationMs": { "type": "number", "minimum": 0 },
+        "ttftMs": { "type": "number", "minimum": 0 },
+        "usage": {
+          "type": "object",
+          "properties": {
+            "inputTokens": { "type": "number", "minimum": 0 },
+            "outputTokens": { "type": "number", "minimum": 0 },
+            "reasoningTokens": { "type": "number", "minimum": 0 },
+            "cachedTokens": { "type": "number", "minimum": 0 },
+            "totalTokens": { "type": "number", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "properties": {
+        "billing": { "enum": ["api", "subscription", "unknown"] },
+        "actualUsd": { "type": "number", "minimum": 0 },
+        "estimatedApiEquivalentUsd": { "type": "number", "minimum": 0 },
+        "pricingDate": { "type": "string" }
+      }
+    },
+    "scores": {
+      "type": "object",
+      "required": ["total"],
+      "properties": {
+        "visual": { "type": "number" },
+        "responsive": { "type": "number" },
+        "functionality": { "type": "number" },
+        "accessibility": { "type": "number" },
+        "compliance": { "type": "number" },
+        "codeQuality": { "type": "number" },
+        "technical": { "type": "number" },
+        "total": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "efficiency": {
+      "type": "object",
+      "properties": {
+        "scorePer1kOutputTokens": { "type": "number" },
+        "scorePerDollar": { "type": "number" },
+        "scorePerSecond": { "type": "number" },
+        "outputTokensPerSecond": { "type": "number" }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "properties": {
+        "lines": { "type": "integer", "minimum": 0 },
+        "bytes": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}
