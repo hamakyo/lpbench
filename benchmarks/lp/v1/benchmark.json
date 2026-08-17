@@ -1,0 +1,11 @@
+{
+  "id": "lp-v1",
+  "name": "SaaS Landing Page",
+  "version": "1.0.0",
+  "requiredFiles": ["index.html", "style.css", "script.js"],
+  "viewports": [
+    { "name": "desktop", "width": 1440, "height": 900 },
+    { "name": "tablet", "width": 768, "height": 1024 },
+    { "name": "mobile", "width": 375, "height": 812 }
+  ]
+}
