@@ -6,6 +6,16 @@ Continuous benchmark for LLM-generated landing pages and web interfaces.
 
 LPBench separates **generation**, **evaluation**, **storage**, and **visualization** so outputs from APIs, coding agents, and manual runs can be compared under the same benchmark conditions.
 
+## Documentation
+
+Design and implementation guidance lives in [`docs/`](./docs/README.md):
+
+- [Architecture](./docs/ARCHITECTURE.md)
+- [Benchmark Design](./docs/BENCHMARK_DESIGN.md)
+- [Results and Metrics](./docs/RESULTS_AND_METRICS.md)
+- [Security Model](./docs/SECURITY.md)
+- [Roadmap](./docs/ROADMAP.md)
+
 ## Planned flow
 
 ```text
@@ -31,6 +41,7 @@ result.json
 
 ```text
 benchmarks/   Versioned benchmark prompts and rubrics
+docs/         Architecture, benchmark rules, metrics, security, and roadmap
 src/runners/  Generation adapters (API / CLI / manual)
 src/evaluators/ Common evaluation modules
 src/metrics/  Cost, latency, token and efficiency metrics
