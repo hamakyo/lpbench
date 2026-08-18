@@ -1,8 +1,15 @@
-# LPBench
-
-[English](./README.md) | 日本語
-
-LLMが生成したランディングページやWeb UIを、同じ条件で継続的に評価・比較するためのベンチマーク基盤です。
+<div align="center">
+  <h1>LPBench</h1>
+  <p><strong>LLMが生成したランディングページやWeb UIを、同じ条件で継続的に評価・比較するためのベンチマーク基盤。</strong></p>
+  <p>
+    <img alt="Status: Experimental" src="https://img.shields.io/badge/status-experimental-orange">
+    <img alt="Benchmark: LP v1" src="https://img.shields.io/badge/benchmark-LP%20v1-6f42c1">
+    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white">
+    <img alt="GitHub stars" src="https://img.shields.io/github/stars/hamakyo/lpbench?style=flat">
+    <img alt="Last commit" src="https://img.shields.io/github/last-commit/hamakyo/lpbench">
+  </p>
+  <p><a href="./README.md">English</a> | 日本語</p>
+</div>
 
 ## 目的
 
