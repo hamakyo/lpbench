@@ -32,7 +32,8 @@
 | 17 | コミット & スタックに PR を積む | ✅ | `topic/06-playwright`, base: main → PR #12 |
 | 18 | `src/result/resultBuilder.ts` — result.json 組み立て | ✅ | schemas/result.schema.json 契約、efficiency/artifact を統合 |
 | 19 | result builder テスト (schema検証含む) | ✅ | `node:test` 48件に増加 |
-| 20 | コミット & スタックに PR を積む | 🚧 | `topic/07-result-builder`, base: topic/06-playwright |
+| 20 | コミット & スタックに PR を積む | ✅ | `topic/07-result-builder`, base: topic/06-playwright |
+| 21 | `.github/workflows/ci.yml` — CI (pnpm check + test) | ✅ | push/PR で実行、Chromium install、CI バッジ |
 
 ## 実装方針
 

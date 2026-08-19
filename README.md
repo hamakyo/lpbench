@@ -7,6 +7,7 @@
     <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white">
     <img alt="GitHub stars" src="https://img.shields.io/github/stars/hamakyo/lpbench?style=flat">
     <img alt="Last commit" src="https://img.shields.io/github/last-commit/hamakyo/lpbench">
+    <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/hamakyo/lpbench/ci.yml?branch=main&label=CI">
   </p>
   <p>English | <a href="./README.ja.md">日本語</a></p>
 </div>
