@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: lint & test (pnpm)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        # version is read automatically from the `packageManager` field in
+        # package.json; do NOT also pass an explicit version here or the
+        # action errors with "Multiple versions of pnpm specified".
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium (Playwright)
+        run: pnpm exec playwright install chromium
+
+      - name: Type check
+        run: pnpm run check
+
+      - name: Test
+        run: pnpm test
