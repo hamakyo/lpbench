@@ -53,6 +53,7 @@ This project is **pnpm-managed** — use pnpm, not npm/yarn. Corepack will pick 
 ```sh
 corepack enable                 # one-time: activate corepack/pnpm shims
 pnpm install                    # install deps (creates pnpm-lock.yaml)
+pnpm exec playwright install chromium   # one-time: browser for Playwright checks
 pnpm run check                  # type-check (tsc --noEmit)
 pnpm test                       # run unit tests (node:test, no paid APIs)
 ```

@@ -29,3 +29,19 @@ Checks emit `passed | failed | unknown | notEvaluated` statuses and never
 fabricate a numeric score for something not measured (docs/ARCHITECTURE.md).
 Browser-dependent checks (runtime errors, horizontal overflow, interaction)
 belong to the Playwright evaluator.
+
+### Browser checks (Playwright)
+
+`browserChecks.ts` runs a generated artifact in real Chromium over the preview
+server origin (`src/runners/previewServer.ts`) and covers the deterministic
+browser-checkable parts of the benchmark:
+
+- page loads without console / uncaught page errors
+- no horizontal overflow at benchmark viewports
+- required sections / copy are present
+- mobile hamburger menu and CTA are interactive
+- per-viewport screenshots
+
+The page is treated as untrusted (`docs/SECURITY.md`): a fresh browser context
+per run and external network requests are blocked. Requires Chromium
+(`pnpm exec playwright install chromium`).

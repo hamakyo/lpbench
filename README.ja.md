@@ -79,6 +79,7 @@ API、Codex、Claude Code、手動生成など、生成経路が違っていて�
 ```sh
 corepack enable                 # 初回のみ: corepack/pnpm の shim を有効化
 pnpm install                    # 依存関係のインストール (pnpm-lock.yaml を生成)
+pnpm exec playwright install chromium   # 初回のみ: Playwright チェック用ブラウザ
 pnpm run check                  # 型チェック (tsc --noEmit)
 pnpm test                       # ユニットテスト実行 (node:test、有料API不要)
 ```
