@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lpbench.dev/schemas/rubric.schema.json",
+  "title": "LPBench Rubric",
+  "description": "Versioned scoring rubric. Category weights (docs/RESULTS_AND_METRICS.md, docs/BENCHMARK_DESIGN.md). The source of truth for category weights.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["total", "categories"],
+  "properties": {
+    "total": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000,
+      "description": "Total possible score. Expected to equal the sum of all category weights."
+    },
+    "categories": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "visual",
+        "responsive",
+        "functionality",
+        "accessibility",
+        "compliance",
+        "codeQuality",
+        "technical"
+      ],
+      "properties": {
+        "visual": { "type": "integer", "minimum": 0, "description": "Visual Quality" },
+        "responsive": { "type": "integer", "minimum": 0, "description": "Responsive Design" },
+        "functionality": { "type": "integer", "minimum": 0, "description": "Functionality" },
+        "accessibility": { "type": "integer", "minimum": 0, "description": "Accessibility" },
+        "compliance": { "type": "integer", "minimum": 0, "description": "Instruction Compliance" },
+        "codeQuality": { "type": "integer", "minimum": 0, "description": "Code Quality" },
+        "technical": { "type": "integer", "minimum": 0, "description": "Technical Quality" }
+      }
+    }
+  }
+}
