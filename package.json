@@ -5,9 +5,11 @@
   "description": "Continuous benchmark for LLM-generated landing pages and web interfaces",
   "type": "module",
   "scripts": {
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "test": "node --test --experimental-strip-types \"test/*.test.ts\""
   },
   "devDependencies": {
+    "@types/node": "^26.2.0",
     "typescript": "^5.9.0"
   }
 }
