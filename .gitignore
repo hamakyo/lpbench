@@ -6,3 +6,7 @@ coverage/
 .env
 .env.*
 !.env.example
+
+# pnpm-managed project: keep pnpm-lock.yaml, block npm/yarn lockfiles
+package-lock.json
+yarn.lock

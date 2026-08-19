@@ -46,6 +46,19 @@ result.json
         +--> GitHub Pages dashboard
 ```
 
+## Development
+
+This project is **pnpm-managed** — use pnpm, not npm/yarn. Corepack will pick up the pinned version from the `packageManager` field.
+
+```sh
+corepack enable                 # one-time: activate corepack/pnpm shims
+pnpm install                    # install deps (creates pnpm-lock.yaml)
+pnpm run check                  # type-check (tsc --noEmit)
+pnpm test                       # run unit tests (node:test, no paid APIs)
+```
+
+> The `package-lock.json` / `yarn.lock` lockfiles are intentionally blocked in `.gitignore`. Only `pnpm-lock.yaml` is tracked.
+
 ## Repository layout
 
 ```text

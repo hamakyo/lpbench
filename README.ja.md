@@ -72,6 +72,19 @@ result.json
 
 API、Codex、Claude Code、手動生成など、生成経路が違っていても、最終的なHTML/CSS/JSは同じEvaluatorへ渡します。
 
+## 開発
+
+このプロジェクトは **pnpm 管理**です。npm / yarn ではなく pnpm を使用してください。`packageManager` フィールドにより Corepack がバージョンを固定適用します。
+
+```sh
+corepack enable                 # 初回のみ: corepack/pnpm の shim を有効化
+pnpm install                    # 依存関係のインストール (pnpm-lock.yaml を生成)
+pnpm run check                  # 型チェック (tsc --noEmit)
+pnpm test                       # ユニットテスト実行 (node:test、有料API不要)
+```
+
+> `package-lock.json` / `yarn.lock` は `.gitignore` で意図的にブロックしています。追跡するロックファイルは `pnpm-lock.yaml` のみです。
+
 ## リポジトリ構成
 
 ```text

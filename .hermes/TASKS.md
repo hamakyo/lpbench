@@ -21,6 +21,7 @@
 
 ## 実装方針
 
+- このリポジトリは **pnpm 管理** (`packageManager: pnpm@9.15.4`)。npm/yarn は使用しない。`pnpm-lock.yaml` のみ追跡
 - 各 metric は純粋関数にする(副作用なし、テスト容易)
 - 入力が unknown / null / 0 の場合は `undefined` を返し、無理な数値化をしない(設計原則 #4)
 - 品質スコアと効率メトリクスは混ぜない(設計原則 #3)
