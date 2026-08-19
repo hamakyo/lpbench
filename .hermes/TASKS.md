@@ -20,7 +20,10 @@
 | 5 | パッケージマネージャを npm → pnpm に切替 | ✅ | packageManager + pnpm-lock.yaml |
 | 6 | `schemas/benchmark.schema.json` / `rubric.schema.json` | ✅ | draft 2020-12、Ajv2020 で検証 |
 | 7 | schema 検証テスト (実在ベンチ/json) | ✅ | `node:test` 20件に増加 |
-| 8 | コミット & PR 更新 | 🚧 | ブランチ `feat/hermes-metrics-efficiency`, PR #5 |
+| 8 | コミット & PR 更新 | ✅ | スタック化: #6 metrics → #7 pnpm → #8 schemas |
+| 9 | `src/runners/previewServer.ts` — local preview server | ✅ | SECURITY.md 準拠、loopback・path traversal拒否 |
+| 10 | preview server テスト | ✅ | `node:test` 29件に増加 |
+| 11 | コミット & スタックに PR を積む | 🚧 | `topic/04-preview-server`, base: topic/03-schemas |
 
 ## 実装方針
 
