@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lpbench.dev/schemas/benchmark.schema.json",
+  "title": "LPBench Benchmark Definition",
+  "description": "A versioned benchmark definition that owns the prompt, required files, viewport definitions, and benchmark-specific constraints. Provider-specific behavior must not be encoded here (docs/ARCHITECTURE.md).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "version", "requiredFiles", "viewports"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Machine-readable benchmark ID, e.g. 'lp-v1'."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable benchmark name, e.g. 'SaaS Landing Page'."
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "SemVer benchmark version. A benchmark version is immutable once published with results (docs/BENCHMARK_DESIGN.md)."
+    },
+    "requiredFiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "Artifact files the generated run must produce."
+    },
+    "viewports": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/viewport"
+      },
+      "description": "Viewport definitions used for responsive evaluation and screenshots."
+    },
+    "rubricPath": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional path (relative to the benchmark directory) to the rubric.json for this version."
+    },
+    "promptPath": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional path (relative to the benchmark directory) to the prompt for this version."
+    }
+  },
+  "$defs": {
+    "viewport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "width", "height"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

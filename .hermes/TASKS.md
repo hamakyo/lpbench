@@ -17,7 +17,10 @@
 | 2 | `src/metrics/artifact.ts` — LOC / bytes 計測 | ✅ | TextEncoder 使用、Node 依存なし |
 | 3 | ユニットテスト (efficiency / artifact) | ✅ | `node:test` 12件、fixture ベース |
 | 4 | `npm run check` で型チェック & テスト実行 | ✅ | どちらも pass |
-| 5 | コミット & PR 作成 | 🚧 | ブランチ `feat/hermes-metrics-efficiency` |
+| 5 | パッケージマネージャを npm → pnpm に切替 | ✅ | packageManager + pnpm-lock.yaml |
+| 6 | `schemas/benchmark.schema.json` / `rubric.schema.json` | ✅ | draft 2020-12、Ajv2020 で検証 |
+| 7 | schema 検証テスト (実在ベンチ/json) | ✅ | `node:test` 20件に増加 |
+| 8 | コミット & PR 更新 | 🚧 | ブランチ `feat/hermes-metrics-efficiency`, PR #5 |
 
 ## 実装方針
 
