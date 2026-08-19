@@ -29,7 +29,10 @@
 | 14 | コミット & スタックに PR を積む | ✅ | `topic/05-static-eval`, base: topic/04-preview-server → PR #11 |
 | 15 | `src/evaluators/browserChecks.ts` — Playwright チェック | ✅ | 実行時エラー・横スクロール・必須セクション・ハンバーガー/CTA |
 | 16 | Playwright 導入 (Chromium) + テスト | ✅ | `node:test` 40件に増加 |
-| 17 | コミット & スタックに PR を積む | 🚧 | `topic/06-playwright`, base: topic/05-static-eval |
+| 17 | コミット & スタックに PR を積む | ✅ | `topic/06-playwright`, base: main → PR #12 |
+| 18 | `src/result/resultBuilder.ts` — result.json 組み立て | ✅ | schemas/result.schema.json 契約、efficiency/artifact を統合 |
+| 19 | result builder テスト (schema検証含む) | ✅ | `node:test` 48件に増加 |
+| 20 | コミット & スタックに PR を積む | 🚧 | `topic/07-result-builder`, base: topic/06-playwright |
 
 ## 実装方針
 
