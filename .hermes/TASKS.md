@@ -23,7 +23,10 @@
 | 8 | コミット & PR 更新 | ✅ | スタック化: #6 metrics → #7 pnpm → #8 schemas |
 | 9 | `src/runners/previewServer.ts` — local preview server | ✅ | SECURITY.md 準拠、loopback・path traversal拒否 |
 | 10 | preview server テスト | ✅ | `node:test` 29件に増加 |
-| 11 | コミット & スタックに PR を積む | 🚧 | `topic/04-preview-server`, base: topic/03-schemas |
+| 11 | コミット & スタックに PR を積む | ✅ | `topic/04-preview-server`, base: topic/03-schemas → PR #10 |
+| 12 | `src/evaluators/staticChecks.ts` — 決定的静的チェック | ✅ | BENCHMARK_DESIGN.md 準拠、browser 不要 |
+| 13 | static checks テスト | ✅ | `node:test` 37件に増加 |
+| 14 | コミット & スタックに PR を積む | 🚧 | `topic/05-static-eval`, base: topic/04-preview-server |
 
 ## 実装方針
 
