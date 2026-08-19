@@ -10,3 +10,8 @@ coverage/
 # pnpm-managed project: keep pnpm-lock.yaml, block npm/yarn lockfiles
 package-lock.json
 yarn.lock
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
