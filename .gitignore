@@ -15,3 +15,7 @@ yarn.lock
 test-results/
 playwright-report/
 blob-report/
+
+# Generated benchmark runs (kept out of git; exported via Actions artifacts)
+runs/*
+!runs/.gitkeep
