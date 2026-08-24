@@ -68,6 +68,7 @@
       "type": "object",
       "properties": {
         "scorePer1kOutputTokens": { "type": "number" },
+        "scorePer1kTotalTokens": { "type": "number" },
         "scorePerDollar": { "type": "number" },
         "scorePerSecond": { "type": "number" },
         "outputTokensPerSecond": { "type": "number" }
@@ -78,6 +79,37 @@
       "properties": {
         "lines": { "type": "integer", "minimum": 0 },
         "bytes": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "lighthouse": {
+      "type": "object",
+      "required": ["evaluator", "status"],
+      "properties": {
+        "evaluator": { "const": "lighthouse" },
+        "status": { "enum": ["ok", "skipped", "failed"] },
+        "warning": { "type": "string" },
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "performance": { "type": "number", "minimum": 0, "maximum": 1 },
+            "accessibility": { "type": "number", "minimum": 0, "maximum": 1 },
+            "bestPractices": { "type": "number", "minimum": 0, "maximum": 1 },
+            "seo": { "type": "number", "minimum": 0, "maximum": 1 },
+            "lcpMs": { "type": "number", "minimum": 0 },
+            "cls": { "type": "number", "minimum": 0 },
+            "tbtMs": { "type": "number", "minimum": 0 },
+            "speedIndexMs": { "type": "number", "minimum": 0 },
+            "interactiveMs": { "type": "number", "minimum": 0 }
+          }
+        }
+      },
+      "if": {
+        "properties": { "status": { "const": "ok" } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": { "metrics": { "type": "object", "minProperties": 1 } },
+        "required": ["metrics"]
       }
     }
   }

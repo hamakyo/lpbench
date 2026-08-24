@@ -1,0 +1,11 @@
+* { margin: 0; box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; }
+.nav { display: flex; gap: 1rem; }
+.hamburger { display: none; }
+section { padding: 2rem; }
+.cta:active { opacity: 0.5; }
+@media (max-width: 600px) {
+  .nav { display: none; }
+  .hamburger { display: block; }
+}

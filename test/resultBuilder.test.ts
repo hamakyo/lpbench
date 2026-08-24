@@ -112,3 +112,58 @@ test("result remains schema-valid even with all optional fields absent", () => {
   });
   assert.equal(validate(r), true, JSON.stringify(validate.errors, null, 2));
 });
+
+// --- lighthouse block ---
+
+test("buildResult emits a schema-valid lighthouse block for an ok run", () => {
+  const input = fullInput();
+  input.lighthouse = {
+    status: "ok",
+    metrics: { performance: 0.95, accessibility: 0.9, bestPractices: 1, seo: 0.85, lcpMs: 2400 },
+  };
+  const r = buildResult(input);
+  const lh = r.lighthouse as any;
+  assert.equal(lh.evaluator, "lighthouse");
+  assert.equal(lh.status, "ok");
+  assert.equal(lh.metrics.performance, 0.95);
+  assert.equal(lh.metrics.lcpMs, 2400);
+  assert.equal(lh.warning, undefined);
+  assert.equal(validate(r), true, JSON.stringify(validate.errors, null, 2));
+});
+
+test("buildResult omits undefined metrics fields and warning when absent", () => {
+  const input = fullInput();
+  input.lighthouse = {
+    status: "ok",
+    metrics: { performance: 0.95, accessibility: 0.9, bestPractices: 1, seo: 0.85, cls: undefined },
+  };
+  const r = buildResult(input);
+  const lh = r.lighthouse as any;
+  assert.deepEqual(Object.keys(lh.metrics).sort(), ["accessibility", "bestPractices", "performance", "seo"]);
+  assert.equal(lh.warning, undefined);
+});
+
+test("buildResult supports a skipped lighthouse outcome without metrics", () => {
+  const input = fullInput();
+  input.lighthouse = { status: "skipped", warning: "no Chrome available" };
+  const r = buildResult(input);
+  const lh = r.lighthouse as any;
+  assert.equal(lh.status, "skipped");
+  assert.equal(lh.warning, "no Chrome available");
+  assert.equal(lh.metrics, undefined);
+  assert.equal(validate(r), true, JSON.stringify(validate.errors, null, 2));
+});
+
+test("result schema rejects an ok lighthouse block without metrics", () => {
+  const input = fullInput();
+  input.lighthouse = { status: "ok" };
+  const r = buildResult(input);
+  assert.equal(validate(r), false, "ok status requires metrics");
+});
+
+test("result schema emits scorePer1kTotalTokens in efficiency", () => {
+  const r = buildResult(fullInput()); // totalTokens = 6000, total = 90
+  const eff = r.efficiency as any;
+  assert.equal(eff.scorePer1kTotalTokens, 15);
+  assert.equal(validate(r), true, JSON.stringify(validate.errors, null, 2));
+});

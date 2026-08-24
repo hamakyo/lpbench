@@ -19,6 +19,7 @@ import {
   outputTokensPerSecond,
 } from "../metrics/efficiency.ts";
 import { measureArtifact } from "../metrics/artifact.ts";
+import type { LighthouseMetricSet } from "../evaluators/lighthouseChecks.ts";
 import type { GenerationSurface } from "../types.ts";
 
 export interface ScoreInput {
@@ -56,10 +57,27 @@ export interface ResultInput {
   pricingDate?: string;
   /** Map of artifact file path -> content, used for LOC/bytes. */
   artifactFiles?: Record<string, string>;
+  /** Lighthouse evaluation outcome; metrics stay separate from the score. */
+  lighthouse?: LighthouseInput;
+}
+
+export interface LighthouseInput {
+  status: "ok" | "skipped" | "failed";
+  warning?: string;
+  metrics?: Partial<LighthouseMetricSet>;
 }
 
 function defined<T>(v: T | undefined): T | undefined {
   return v === undefined ? undefined : v;
+}
+
+/** Strip undefined fields so serialized objects stay clean. */
+function stripUndefined(obj: Record<string, unknown>): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const [k, v] of Object.entries(obj)) {
+    if (v !== undefined) out[k] = v as number;
+  }
+  return out;
 }
 
 /** Build the normalized result object. */
@@ -98,7 +116,9 @@ export function buildResult(input: ResultInput): Record<string, unknown> {
     generation: {
       durationMs: input.generationDurationMs,
       ...(defined(input.ttftMs) !== undefined ? { ttftMs: input.ttftMs } : {}),
-      ...(input.usage && Object.keys(input.usage).length > 0 ? { usage: cleanUsage(input.usage) } : {}),
+      ...(input.usage && Object.keys(input.usage).length > 0
+        ? { usage: stripUndefined(input.usage as Record<string, unknown>) }
+        : {}),
     },
     scores: { ...scores, total },
   };
@@ -129,14 +149,19 @@ export function buildResult(input: ResultInput): Record<string, unknown> {
 
   if (artifact !== undefined) out.artifact = artifact;
 
+  if (input.lighthouse !== undefined) {
+    const { lighthouse } = input;
+    out.lighthouse = {
+      evaluator: "lighthouse",
+      status: lighthouse.status,
+      ...(lighthouse.warning !== undefined ? { warning: lighthouse.warning } : {}),
+      ...(lighthouse.metrics && Object.keys(lighthouse.metrics).length > 0
+        ? { metrics: stripUndefined(lighthouse.metrics as Record<string, unknown>) }
+        : {}),
+    };
+  }
+
   return out;
 }
 
-/** Strip undefined token fields so the serialized object stays clean. */
-function cleanUsage(usage: TokenUsageInput): Record<string, number> {
-  const out: Record<string, number> = {};
-  for (const [k, v] of Object.entries(usage)) {
-    if (v !== undefined) out[k] = v;
-  }
-  return out;
-}
+
