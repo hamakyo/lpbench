@@ -5,7 +5,7 @@
 
 ## 現在の作業ブランチ
 
-`feat/hermes-metrics-efficiency`
+`main` — v0.1 の縦断スライス完了 (PR #16-#19 merged)
 
 ## 進捗
 
@@ -34,6 +34,10 @@
 | 19 | result builder テスト (schema検証含む) | ✅ | `node:test` 48件に増加 |
 | 20 | コミット & スタックに PR を積む | ✅ | `topic/07-result-builder`, base: topic/06-playwright |
 | 21 | `.github/workflows/ci.yml` — CI (pnpm check + test) | ✅ | push/PR で実行、Chromium install、CI バッジ |
+| 22 | `data/pricing/` + `src/pricing/registry.ts` + `src/metrics/cost.ts` — 価格レジストリ & API cost 計算 | ✅ | PR #16、snapshotDate 付き、価格不明は undefined のまま継続 |
+| 23 | `src/runners/openaiRunner.ts` — OpenAI API runner | ✅ | PR #17、usage 正規化・wall time・タイムアウト、providerRaw サニタイズ |
+| 24 | `scripts/smoke-run.ts` + CI (workflow_dispatch / runs/ artifact) | ✅ | PR #18、fixture ベース unscored、artifact 出力確認済み |
+| 25 | `src/evaluators/lighthouseChecks.ts` — Lighthouse 評価器 | ✅ | PR #19、result schema に lighthouse ブロック、Chrome 不在時は skip |
 
 ## 実装方針
 
