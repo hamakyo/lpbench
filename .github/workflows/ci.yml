@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 jobs:
   test:
@@ -36,3 +37,38 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+  # Fixture smoke run: proves preview server -> Playwright checks ->
+  # normalized result.json end-to-end without any paid API, and exports the
+  # run as a GitHub Actions artifact (docs/ROADMAP.md v0.1).
+  smoke-run:
+    name: fixture smoke run
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium (Playwright)
+        run: pnpm exec playwright install chromium
+
+      - name: Run fixture smoke run
+        run: node --experimental-strip-types scripts/smoke-run.ts
+
+      - name: Export run as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-run-${{ github.run_id }}
+          path: runs/
+          if-no-files-found: error
