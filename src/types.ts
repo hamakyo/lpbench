@@ -4,6 +4,8 @@ export interface BenchmarkInput {
   benchmarkId: string;
   prompt: string;
   outputDir: string;
+  /** Files the generated artifact must contain (from the benchmark definition). */
+  requiredFiles: string[];
 }
 
 export interface TokenUsage {
