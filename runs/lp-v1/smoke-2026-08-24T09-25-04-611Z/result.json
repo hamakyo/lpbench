@@ -1,0 +1,22 @@
+{
+  "runId": "smoke-2026-08-24T09-25-04-611Z",
+  "benchmark": {
+    "id": "lp-v1",
+    "version": "1.0.0"
+  },
+  "model": {
+    "provider": "fixture",
+    "id": "smoke-pipeline",
+    "surface": "manual"
+  },
+  "generation": {
+    "durationMs": 0
+  },
+  "scores": {
+    "total": 0
+  },
+  "artifact": {
+    "lines": 45,
+    "bytes": 1771
+  }
+}

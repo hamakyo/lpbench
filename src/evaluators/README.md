@@ -45,3 +45,13 @@ browser-checkable parts of the benchmark:
 The page is treated as untrusted (`docs/SECURITY.md`): a fresh browser context
 per run and external network requests are blocked. Requires Chromium
 (`pnpm exec playwright install chromium`).
+
+### Lighthouse checks
+
+`lighthouseChecks.ts` runs Lighthouse against the served artifact URL and
+normalizes the report into a small metric set (performance / accessibility /
+best-practices / seo category scores plus LCP / CLS / TBT / Speed Index / TTI
+audits). Lighthouse outputs are raw measurements kept separate from the
+quality score (`docs/BENCHMARK_DESIGN.md`). Chrome unavailability or a failed
+run yields `skipped`/`failed` with a warning — numbers are never fabricated.
+Needs Chrome on the host (`CHROME_PATH` or chrome-launcher discovery).
